@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>VT-Web HTML+JS Client</title>
+</head>
+<body>
+
+<h1>VT-Web HTML+JS Client</h1>
+
+<p>
+<br />
+<label><font color="red">Merchant Hash Key : </font></label>
+<br />
+<input type="text" size="50" id="merchanthashkey" value="" />
+</p>
+
+<h2>Get Tokens</h2>
+
+<form id="gettoken" method="post" action="https://vtweb.veritrans.co.id/web1/commodityRegist.action">
+<label><font color="red">MERCHANT_ID : </font></label>
+<br />
+<input type="text" size="50" name="MERCHANT_ID" value="" />
+<br />
+<label><font color="red">ORDER_ID (max 20 characters)</font></label>
+<br />
+<input type="text" name="ORDER_ID" value="" />
+<button type="button">Generate Order</button>
+<br />
+SETTLEMENT_TYPE
+<br />
+<input type="text" name="SETTLEMENT_TYPE" value="01" />
+<br />
+enable_3d_secure
+<br />
+<input type="text" name="enable_3d_secure" value="0" />
+<br />
+installment_banks
+<br />
+<input type="text" name="installment_banks[]" value="bni" />
+<br />
+point_banks
+<br />
+<input type="text" name="point_banks[]" value="bni" />
+<br />
+GROSS_AMOUNT
+<br />
+<input type="text" name="GROSS_AMOUNT" value="19000" />
+<br />
+CUSTOMER_SPECIFICATION_FLAG
+<br />
+<input type="text" name="CUSTOMER_SPECIFICATION_FLAG" value="1" />
+<br />
+FIRST_NAME
+<br />
+<input type="text" name="FIRST_NAME" value="Panggi" />
+<br />
+LAST_NAME
+<br />
+<input type="text" name="LAST_NAME" value="Libersa Jasri Akadol" />
+<br />
+ADDRESS1
+<br />
+<input type="text" name="ADDRESS1" value="PT. MIDTRANS" />
+<br />
+ADDRESS2
+<br />
+<input type="text" name="ADDRESS2" value="Jl. Jend. Sudirman Kav. 10-11" />
+<br />
+CITY
+<br />
+<input type="text" name="CITY" value="Jakarta" />
+<br />
+COUNTRY_CODE
+<br />
+<input type="text" name="COUNTRY_CODE" value="IDN" />
+<br />
+POSTAL_CODE
+<br />
+<input type="text" name="POSTAL_CODE" value="11220" />
+<br />
+PHONE
+<br />
+<input type="text" name="PHONE" value="+62215737777" />
+<br />
+EMAIL
+<br />
+<input type="text" name="EMAIL" value="chuck@veritrans.co.id" />
+<br />
+SHIPPING_FLAG
+<br />
+<input type="text" name="SHIPPING_FLAG" value="1" />
+<br />
+
+SHIPPING_FIRST_NAME
+<br />
+<input type="text" name="SHIPPING_FIRST_NAME" value="Panggi" />
+<br />
+
+SHIPPING_LAST_NAME
+<br />
+<input type="text" name="SHIPPING_LAST_NAME" value="Libersa Jasri Akadol" />
+<br />
+
+SHIPPING_ADDRESS1
+<br />
+<input type="text" name="SHIPPING_ADDRESS1" value="PT. MIDTRANS" />
+<br />
+
+SHIPPING_ADDRESS2
+<br />
+<input type="text" name="SHIPPING_ADDRESS2" value="Jl. Jend. Sudirman Kav. 10-11" />
+<br />
+
+SHIPPING_CITY
+<br />
+<input type="text" name="SHIPPING_CITY" value="Jakarta" />
+<br />
+
+SHIPPING_COUNTRY_CODE
+<br />
+<input type="text" name="SHIPPING_COUNTRY_CODE" value="IDN" />
+<br />
+
+SHIPPING_POSTAL_CODE
+<br />
+<input type="text" name="SHIPPING_POSTAL_CODE" value="11220" />
+<br />
+
+SHIPPING_PHONE
+<br />
+<input type="text" name="SHIPPING_PHONE" value="+62215737777" />
+<br />
+
+REPEAT_LINE
+<br />
+<input type="text" name="REPEAT_LINE" value="1" />
+<br />
+
+COMMODITY_ID
+<br />
+<input type="text" name="COMMODITY_ID" value="item01" />
+<br />
+
+COMMODITY_UNIT
+<br />
+<input type="text" name="COMMODITY_UNIT" value="19000" />
+<br />
+
+COMMODITY_NUM
+<br />
+<input type="text" name="COMMODITY_NUM" value="1" />
+<br />
+
+COMMODITY_NAME1
+<br />
+<input type="text" name="COMMODITY_NAME1" value="Item Name 01" />
+<br />
+
+COMMODITY_NAME2
+<br />
+<input type="text" name="COMMODITY_NAME2" value="Item Name 01" />
+<br />
+<br />
+
+MERCHANTHASH (Click 'Calculate Hash' button to get this value)
+<br />
+<input type="text" name="MERCHANTHASH" value="" />
+<br />
+<button type="button">Calculate Hash</button> ----> step 1
+<br />
+<button type="submit">Submit</button> ----> step 2
+</form>
+
+<label>The return result after submit (step 2) will be like this </label>
+<br />
+TOKEN_MERCHANT=*********************** 
+TOKEN_BROWSER=************************
+<br />
+
+Copy TOKEN_BROWSER value to form below ;
+
+<h2>Redirect to Veritrans</h2>
+
+<label>*Please refer ORDER_ID to form above.</label>
+<br />
+<br />
+
+<form id="requesttokens" method="post" action="https://vtweb.veritrans.co.id/web1/paymentStart.action">
+<label><font color="red">MERCHANT ID : </font></label>
+<input type="text" size="50" name="MERCHANT_ID" value="" />
+<br />
+<label><font color="red">ORDER ID (Must be same as step 1) : </font></label>
+<input type="text" size="50" name="ORDER_ID" />
+<br />
+<label><font color="red">TOKEN BROWSER : </font></label>
+<input type="text" size="50" name="TOKEN_BROWSER" />
+<br />
+<button type="submit">Submit</button> ----> step 3
+</form>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="sha.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+  $("#gettoken button:contains('Generate')").click(function () {
+    $('#gettoken input[name=ORDER_ID]').val(Math.floor((Math.random()*1000000000000)+1));
+  });
+});
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#gettoken button:contains('Calculate')").click(function () {
+            $("#gettoken input[name=MERCHANTHASH]").val(function () {
+                var merchantid = $('#gettoken input[name=MERCHANT_ID]').val();
+                var merchanthashkey = $("#merchanthashkey").val();
+                var settlementmethod = $('#gettoken input[name=SETTLEMENT_TYPE]').val();
+                var orderid = $('#gettoken input[name=ORDER_ID]').val();
+                var amount = $('#gettoken input[name=GROSS_AMOUNT]').val();
+                var plaintext = merchanthashkey +','+ merchantid +','+ settlementmethod +','+ orderid +','+ amount;
+                var hasher = new jsSHA(plaintext, "ASCII")
+                var hash = hasher.getHash("SHA-512", "HEX")
+                return hash;
+            }());
+        });
+    });
+</script>
+</body>
+</html>
